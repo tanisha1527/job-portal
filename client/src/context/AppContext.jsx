@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createContext } from "react";
+import { jobsData } from '../assets/assets';
 
 export const AppContext = createContext()
 
@@ -15,6 +16,17 @@ export const AppContextProvider = (props) => {
     return localStorage.getItem("isSearched") === "true";
   });
 
+  const [jobs,setJobs] = useState([])
+
+  // Function to Fetch jobs
+  const fetchJobs = async () => {
+       setJobs(jobsData)
+  }
+
+  useEffect(()=> {
+       fetchJobs()
+  },[])
+
   // Save to localStorage when state changes
   useEffect(() => {
     localStorage.setItem("searchFilter", JSON.stringify(searchFilter));
@@ -24,6 +36,7 @@ export const AppContextProvider = (props) => {
    const value = {
         setSearchFilter,searchFilter,
         isSearched,setIsSearched,
+        jobs,setJobs,
    }
 
    return (<AppContext.Provider value={value}>
