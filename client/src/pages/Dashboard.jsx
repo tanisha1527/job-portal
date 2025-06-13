@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { assets } from '../assets/assets'
 import { useContext } from 'react'
@@ -17,6 +17,12 @@ const Dashboard = () => {
        setCompanyData(null)
        navigate('/')
   }
+
+  useEffect(()=> {
+     if (companyData) {
+       navigate('/dashboard/view-applications')
+     }
+  },[companyData])
 
   return (
     <div className='min-h-screen'>
