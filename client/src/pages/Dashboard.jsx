@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   useEffect(()=> {
      if (companyData) {
-       navigate('/dashboard/view-applications')
+       navigate('/dashboard/manage-jobs')
      }
   },[companyData])
 
